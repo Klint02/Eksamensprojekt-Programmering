@@ -1,12 +1,39 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype <!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <!--
+      Inputfield:
+      - Hvad man skal
+      - Hvor lang tid (timer)
+      - Hvilken dag
+    -->
+    <form method="post" action="/">
+      <label id="activity" for"activity">Aktivitet:</label><br>
+      <input type="text" id="activity" name="activity" placeholder="">
+      <br>
+      <label id="time" for"time">Antal timer:</label><br>
+      <input type="text" id="time" name="time" placeholder="">
+      <br>
+      <select id="option" name="day" size="1">
+        <option name="day" value="Monday">Mandag</option>
+        <option name="day" value="Tuesday">Tirsdag</option>
+        <option name="day" value="Wednesday">Onsdag</option>
+        <option name="day" value="Thursday">Torsdag</option>
+        <option name="day" value="Friday">Fredag</option>
+        <option name="day" value="Saturday">Lørdag</option>
+        <option name="day" value="Sunday">Søndag</option>
+      </select>
+      <br>
+      <input id="submit_button" type="submit" value="Opret">
+    </form>
+    <script src="" async defer></script>
   </body>
 </html>
