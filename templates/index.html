@@ -34,6 +34,112 @@
       <br>
       <input id="submit_button" type="submit" value="Opret">
     </form>
+    <!-- Målmand -->
+    <h3>Mandag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Monday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+    <br />
+
+    <!-- Forsvar -->
+    <h3>Tirsdag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Tuesday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+    <br />
+
+    <!-- Midtbane -->
+    <h3>Onsdag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      <tr>
+        <td>k</td>
+      </tr>
+    </table>
+    <br />
+
+    <!-- Angriber -->
+    <h3>Torsdag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      <tr>
+        <td>s</td>
+      </tr>
+    </table>
+    <br>
+
+    <h3>Fredag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      <tr>
+        <td>s</td>
+      </tr>
+    </table>
+    <br>
+
+    <h3>Lørdag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      <tr>
+        <td>s</td>
+      </tr>
+    </table>
+    <br>
+
+    <h3>Søndag</h3>
+    <table>
+      <tr>
+        <th>Aktivitet</th>
+        <th>Tid</th>
+        <th>Beskrivelse</th>
+      </tr>
+      <tr>
+        <td>s</td>
+      </tr>
+    </table>
+    <br>
     <script src="" async defer></script>
   </body>
 </html>
