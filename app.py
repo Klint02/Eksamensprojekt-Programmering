@@ -21,32 +21,11 @@ def index():
                 activity = request.form.get('activity')
                 time = request.form.get('time')
                 day = request.form.get('day')
+                description = request.form.get('description')
 
-                activitys.append(Activity(day,str(activity),"DATO","Beskrivelse"))
+                activitys.append(Activity(day,str(activity), str(time) ,"DATO",str(description)))
                 print(activitys)
-                '''
-                if day == "Monday":
-                    monday[str(activity)] = [day,str(activity),time]
-                    print(monday)
-                if day == "Tuesday":
-                    thursday[str(activity)] = [day,str(activity),time]
-                    print(thursday)
-                if day == "Wednesday":
-                    wednesday[str(activity)] = [day,str(activity),time]
-                    print(wednesday)
-                if day == "Thursday":
-                    thursday[str(activity)] = [day,str(activity),time]
-                    print(thursday)
-                if day == "Friday":
-                    friday[str(activity)] = [day,str(activity),time]
-                    print(friday)
-                if day == "Saturday":
-                    saturday[str(activity)] = [day,str(activity),time]
-                    print(saturday)
-                if day == "Sunday":
-                    sunday[str(activity)] = [day,str(activity),time]
-                    print(sunday)
-                '''
+
                 return render_template("index.html", activitys=activitys)
         except sqlite3.Error:
             message = "There was a problem executing the SQL statement"

@@ -22,6 +22,7 @@
       <label id="time" for"time">Antal timer:</label><br>
       <input type="text" id="time" name="time" placeholder="">
       <br>
+      <label id="day" for"day">Vælg dag:</label><br>
       <select id="option" name="day" size="1">
         <option name="day" value="Monday">Mandag</option>
         <option name="day" value="Tuesday">Tirsdag</option>
@@ -32,6 +33,9 @@
         <option name="day" value="Sunday">Søndag</option>
       </select>
       <br>
+      <label id="description" for"description">Beskrivelse:</label><br>
+      <textarea id="description" name="description" rows="4" cols="50"></textarea>
+      <br>
       <input id="submit_button" type="submit" value="Opret">
     </form>
     <!-- Målmand -->
@@ -41,6 +45,7 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
       {% for activity in activitys %}
         {% if activity.day == 'Monday' %}
@@ -48,6 +53,7 @@
             <td>{{ activity.activity }}</td>
             <td>{{ activity.time }}</td>
             <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -61,6 +67,7 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
       {% for activity in activitys %}
         {% if activity.day == 'Tuesday' %}
@@ -68,6 +75,7 @@
             <td>{{ activity.activity }}</td>
             <td>{{ activity.time }}</td>
             <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -81,10 +89,18 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
-      <tr>
-        <td>k</td>
-      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Wednesday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
     </table>
     <br />
 
@@ -95,10 +111,18 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
-      <tr>
-        <td>s</td>
-      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Thursday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
     </table>
     <br>
 
@@ -108,10 +132,18 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
-      <tr>
-        <td>s</td>
-      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Friday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
     </table>
     <br>
 
@@ -121,10 +153,18 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
-      <tr>
-        <td>s</td>
-      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Saturday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
     </table>
     <br>
 
@@ -134,10 +174,18 @@
         <th>Aktivitet</th>
         <th>Tid</th>
         <th>Beskrivelse</th>
+        <th>Dato</th>
       </tr>
-      <tr>
-        <td>s</td>
-      </tr>
+      {% for activity in activitys %}
+        {% if activity.day == 'Sunday' %}
+          <tr>
+            <td>{{ activity.activity }}</td>
+            <td>{{ activity.time }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.date }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
     </table>
     <br>
     <script src="" async defer></script>
