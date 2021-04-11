@@ -13,6 +13,11 @@ sunday = {}
 
 activitys = []
 
+# Spørgsmål
+# Database hvor den gemmer kalender for hver person
+# Kalender over flere uger
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     with sqlite3.connect("db.db") as db:
