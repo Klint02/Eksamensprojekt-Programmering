@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="">
   </head>
   <body>
+    <p>Welcome {{ session['username'] }}</p><br>
     <form method="post" action="/">
       <label id="activity" for"activity">Aktivitet:</label><br>
       <input type="text" id="activity" name="activity" placeholder="">
@@ -31,6 +32,10 @@
       <textarea id="description" name="description" rows="4" cols="50"></textarea>
       <br>
       <input id="submit_button" type="submit" value="Opret">
+    </form>
+    <form method="post" action="/save">
+      <label id="save_button" for="save_button">Gem</label>
+      <input id="submit_button" type="submit" value="Reset data">
     </form>
     <!-- Målmand -->
     <h3>Mandag</h3>

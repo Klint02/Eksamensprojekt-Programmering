@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, url_for, escape, g
 import sqlite3
 from activity import Activity
+import pickle
 
 app = Flask(__name__)
 
@@ -8,10 +9,7 @@ activitys = []
 
 # https://www.youtube.com/watch?v=cvPnRmOs9io
 
-# Spørgsmål
-# Database hvor den gemmer kalender for hver person
-# Kalender over flere uger
-
+app.secret_key = 'BAD_SECRET_KEY'
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -26,11 +24,29 @@ def index():
                 activitys.append(Activity(day,str(activity), str(time) ,"DATO",str(description)))
                 print(activitys)
 
-                return render_template("index.html", activitys=activitys)
+                cursor = db.cursor()
+            
+                #cursor.execute("UPDATE person SET Calender = (?) WHERE person = 'test'", (activitys))
+                cursor.execute("INSERT INTO person (Person, Calender) VALUES ('test', ?)", ())
+
+                #return render_template("index.html", activitys=activitys)
         except sqlite3.Error:
             message = "There was a problem executing the SQL statement"
             return render_template("index.html", error=message, activitys=activitys)
-    return render_template("index.html")
+    return render_template("index.html", activitys=activitys)
+
+@app.route('/save', methods=['POST', 'GET'])
+def save():
+    with sqlite3.connect("db.db") as db:
+        try:
+            # Hvis der postes noget data
+            if request.method == "POST":
+                with open(f'datafiles/test.pickle', 'wb') as file:
+                    pickle.dump(activitys, file)
+                return redirect("/")
+        except sqlite3.Error:
+            message = "There was a problem executing the SQL statement"
+            return render_template("index.html", error=message)
 
 DATABASE = 'users.db'
 
@@ -65,17 +81,27 @@ def valid_login(username, password):
 
 
 def log_the_user_in(username):
-    return render_template('profile.html', username=username)
+    with open(f'datafiles/test.pickle', 'rb') as file2:
+        saved_data = pickle.load(file2)
+    activitys = saved_data
+    return render_template('index.html', activitys=activitys, username=username)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form['username'], request.form['password']):
+            session['username'] = request.form['username']
+            
             return log_the_user_in(request.form['username'])
         else:
             error = 'Invalid username/password'
 
     return render_template('login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', default=None)
+    return '<h1>Logged out!</h1>'
 
 app.run(host='0.0.0.0', port=81, debug=True)
