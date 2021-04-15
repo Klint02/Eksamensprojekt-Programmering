@@ -41,7 +41,7 @@ def save():
         try:
             # Hvis der postes noget data
             if request.method == "POST":
-                with open(f'datafiles/test.pickle', 'wb') as file:
+                with open(f"datafiles/{session['username']}", 'wb') as file:
                     pickle.dump(activitys, file)
                 return redirect("/")
         except sqlite3.Error:
@@ -81,10 +81,17 @@ def valid_login(username, password):
 
 
 def log_the_user_in(username):
-    with open(f'datafiles/test.pickle', 'rb') as file2:
-        saved_data = pickle.load(file2)
-    activitys = saved_data
-    return render_template('index.html', activitys=activitys, username=username)
+    try:
+        with open(f"datafiles/{session['username']}", 'rb') as file2:
+            saved_data = pickle.load(file2)
+            activitys = saved_data
+            return render_template('index.html', activitys=activitys, username=username)
+    except FileNotFoundError:
+        with open(f"datafiles/{session['username']}", 'wb') as file:
+            activitys = ""
+            pickle.dump(activitys, file)
+            return render_template('index.html', activitys=activitys, username=username)
+    
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
