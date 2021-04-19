@@ -7,8 +7,6 @@ app = Flask(__name__)
 
 activitys = []
 
-# https://www.youtube.com/watch?v=cvPnRmOs9io
-
 app.secret_key = 'BAD_SECRET_KEY'
 
 @app.route('/', methods=['POST', 'GET'])
@@ -48,44 +46,13 @@ def save():
             message = "There was a problem executing the SQL statement"
             return render_template("index.html", error=message)
 
-DATABASE = 'users.db'
-
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
-
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
-
-
-def query_db(query, args=(), one=False):
-    cur = get_db().execute(query, args)
-    rv = cur.fetchall()
-    cur.close()
-    return (rv[0] if rv else None) if one else rv
-
-
-def valid_login(username, password):
-    user = query_db('select * from User where username = ? and password = ?', [username, password], one=True)
-    if user is None:
-        return False
-    else:
-        return True
-
-
 def log_the_user_in(username):
     try:
         with open(f"datafiles/{session['username']}", 'rb') as file2:
             saved_data = pickle.load(file2)
             activitys = saved_data
             return render_template('index.html', activitys=activitys, username=username)
+    # Hvis personen ikke har fået oprettet en fil, opret en der er tom
     except FileNotFoundError:
         with open(f"datafiles/{session['username']}", 'wb') as file:
             activitys = ""
@@ -95,16 +62,57 @@ def log_the_user_in(username):
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'], request.form['password']):
-            session['username'] = request.form['username']
-            
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
+    with sqlite3.connect("users.db") as db:
+        try:
+            error = None
+            if request.method == 'POST':
+                username = request.form.get('username')
+                password = request.form.get('password')
+
+                cursor = db.cursor()
+                cursor.execute('select * from User where username = ? and password = ?', (username,password))
+                valid_login = cursor.fetchall()
+
+                if valid_login != []:
+                    session['username'] = request.form['username']
+                    
+                    return log_the_user_in(request.form['username'])
+                else:
+                    error = 'Invalid username/password'
+        except sqlite3.Error:
+            message = "There was a problem executing the SQL statement"
+            return render_template("login.html", error=message)
 
     return render_template('login.html', error=error)
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    with sqlite3.connect("users.db") as db:
+        try:
+            error = None
+            if request.method == 'POST':
+                username = request.form.get('username')
+                password = request.form.get('password')
+
+                cursor = db.cursor()
+                cursor.execute('select * from User where username = ? and password = ?', (username,password))
+                print(cursor.fetchall())
+                valid_login = cursor.fetchall()
+                
+                if valid_login == []:
+                    #cursor = db.cursor()
+                    print("test")
+                    cur = db.cursor()
+                    cur.execute("INSERT INTO User(username, password) values (?,?)", (username,password))
+                    print(cur.fetchall())
+                    
+                    render_template('login.html', error=error)
+                else:
+                    error = 'Kontoen eksiterer allerede'
+        except sqlite3.Error:
+            message = "There was a problem executing the SQL statement"
+            return render_template("register.html", error=message)
+    return render_template('register.html', error=error)
 
 @app.route('/logout')
 def logout():
