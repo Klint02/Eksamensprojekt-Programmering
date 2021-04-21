@@ -10,7 +10,7 @@ activitys = []
 app.secret_key = 'BAD_SECRET_KEY'
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    with sqlite3.connect("db.db") as db:
+    with sqlite3.connect("users.db") as db:
         try:
             if session.get('username') == None:
                 return render_template("login.html")
@@ -24,11 +24,9 @@ def index():
                 print(activitys)
 
                 cursor = db.cursor()
-            
-                #cursor.execute("UPDATE person SET Calender = (?) WHERE person = 'test'", (activitys))
-                cursor.execute("INSERT INTO person (Person, Calender) VALUES ('test', ?)", ())
+        
+                #cursor.execute("INSERT INTO person (Person, Calender) VALUES ('test', ?)", ())
 
-                #return render_template("index.html", activitys=activitys)
         except sqlite3.Error:
             message = "There was a problem executing the SQL statement"
             return render_template("index.html", error=message, activitys=activitys)
@@ -36,7 +34,7 @@ def index():
 
 @app.route('/save', methods=['POST', 'GET'])
 def save():
-    with sqlite3.connect("db.db") as db:
+    with sqlite3.connect("users.db") as db:
         try:
             # Hvis der postes noget data
             if request.method == "POST":
@@ -58,7 +56,14 @@ def log_the_user_in(username):
         with open(f"datafiles/{session['username']}", 'wb') as file:
             activitys = ""
             pickle.dump(activitys, file)
-            return render_template('index.html', activitys=activitys, username=username)
+            with sqlite3.connect("users.db") as db:
+                try:
+                    cursor = db.cursor()
+                    cursor.execute("INSERT INTO Interests VALUES (?,?,?,?)", (session['username'], "Ikke oplyst", "Ikke oplyst", "Ikke oplyst"))
+                    return render_template('index.html', activitys=activitys, username=username)
+                except sqlite3.Error:
+                    message = "There was a problem executing the SQL statement"
+                    return render_template("login.html", error=message)
     
 
 @app.route('/login', methods=['POST', 'GET'])
