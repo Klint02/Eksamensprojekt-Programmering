@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="">
   </head>
   <body>
+    <div id="text-and-input">
     <p>Welcome {{ session['username'] }}</p><br>
     <form method="post" action="/">
       <label id="activity" for"activity">Aktivitet:</label><br>
@@ -37,156 +38,101 @@
       <label id="save_button" for="save_button">Gem</label>
       <input id="submit_button" type="submit" value="Reset data">
     </form>
+    <a href="logout">Log ud</a>
+    </div>
+    <div class="calender">
     <!-- Målmand -->
-    <h3>Mandag</h3>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Mandag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Monday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
     </table>
-    <br />
-
+    </div>
     <!-- Forsvar -->
-    <h3>Tirsdag</h3>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Tirsdag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Tuesday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
+    
     </table>
-    <br />
-
+    </div>
     <!-- Midtbane -->
-    <h3>Onsdag</h3>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Onsdag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Wednesday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
     </table>
-    <br />
-
+    </div>
     <!-- Angriber -->
-    <h3>Torsdag</h3>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Torsdag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Thursday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
     </table>
-    <br>
-
-    <h3>Fredag</h3>
+    </div>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Fredag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Friday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
     </table>
-    <br>
-
-    <h3>Lørdag</h3>
+    </div>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Lørdag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Saturday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
     </table>
-    <br>
-
-    <h3>Søndag</h3>
+    </div>
+    <div class="column">
     <table>
-      <tr>
-        <th>Aktivitet</th>
-        <th>Tid</th>
-        <th>Beskrivelse</th>
-        <th>Dato</th>
-      </tr>
+      <caption><h3>Søndag</h3></caption>
       {% for activity in activitys %}
         {% if activity.day == 'Sunday' %}
           <tr>
-            <td>{{ activity.activity }}</td>
-            <td>{{ activity.time }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.date }}</td>
+            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
           </tr>
         {% endif %}
       {% endfor %}
     </table>
+    </div>
+    </div>
     <br>
+    
     <script src="" async defer></script>
   </body>
 </html>
