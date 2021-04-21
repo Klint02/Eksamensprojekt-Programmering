@@ -8,12 +8,13 @@ app = Flask(__name__)
 activitys = []
 
 app.secret_key = 'BAD_SECRET_KEY'
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
     with sqlite3.connect("db.db") as db:
         try:
-            if request.method == 'POST':
+            if session.get('username') == None:
+                return render_template("login.html")
+            elif request.method == 'POST':
                 activity = request.form.get('activity')
                 time = request.form.get('time')
                 day = request.form.get('day')
