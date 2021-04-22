@@ -23,7 +23,7 @@ def index():
                 activitys.append(Activity(day,str(activity), str(time) ,"DATO",str(description)))
                 print(activitys)
 
-                cursor = db.cursor()
+                #cursor = db.cursor()
         
                 #cursor.execute("INSERT INTO person (Person, Calender) VALUES ('test', ?)", ())
 
@@ -48,8 +48,10 @@ def save():
 def log_the_user_in(username):
     try:
         with open(f"datafiles/{session['username']}", 'rb') as file2:
+            global activitys
             saved_data = pickle.load(file2)
             activitys = saved_data
+            print(activitys)
             return render_template('index.html', activitys=activitys, username=username)
     # Hvis personen ikke har fået oprettet en fil, opret en der er tom
     except FileNotFoundError:
