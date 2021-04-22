@@ -41,10 +41,13 @@ div table caption {
 
 #text-and-input {
   float: left;
+  margin-left: 10px;
 }
 
 html body {
   font-family: Lato;
+  padding: 0;
+  margin: 0;
 }
 
 
