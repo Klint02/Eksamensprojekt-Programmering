@@ -3,12 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Kalender</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../static/main.css">
+
+    <script>
+      function updatemenu() {
+        if (document.getElementById('responsive-menu').checked == true) {
+          document.getElementById('menu').style.borderBottomRightRadius = '0';
+          document.getElementById('menu').style.borderBottomLeftRadius = '0';
+        } else {
+          document.getElementById('menu').style.borderRadius = '0px';
+        }
+      }
+    </script>
   </head>
   <body>
+    <nav id='menu'>
+      <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+      <ul>
+        <li><a href='/'>Kalender</a></li>
+        <li><a href='/Profile'>Profil</a></li>
+        <li><a href='/logout'>Log ud</a></li>
+      </ul>
+    </nav>
     <div id="text-and-input">
     <p>Welcome {{ session['username'] }}</p><br>
     <form method="post" action="/">
