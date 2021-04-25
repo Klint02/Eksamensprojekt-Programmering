@@ -45,6 +45,23 @@ def save():
             message = "There was a problem executing the SQL statement"
             return render_template("index.html", error=message)
 
+@app.route('/profile', methods=['POST', 'GET'])
+def profile():
+    with sqlite3.connect("users.db") as db:
+        try:
+            if request.method == 'POST':
+                primary_interest = request.form.get('primary_interest')
+                secondary_interest = request.form.get('secondary_interest')
+                tertiary_interest = request.form.get('tertiary_interest')
+
+                cursor = db.cursor()
+                cursor.execute("UPDATE Interests SET primary = ?, secondary = ?, tertiary = ? WHERE username = ?", (primary_interest, secondary_interest, tertiary_interest, session['username']))
+                print(primary_interest,secondary_interest,tertiary_interest)
+        except sqlite3.Error:
+            message = "There was a problem executing the SQL statement"
+            return render_template("profile.html", error=message)
+    return render_template("profile.html")
+
 def log_the_user_in(username):
     try:
         with open(f"datafiles/{session['username']}", 'rb') as file2:
@@ -125,6 +142,6 @@ def register():
 @app.route('/logout')
 def logout():
     session.pop('username', default=None)
-    return '<h1>Logged out!</h1>'
+    return render_template('login.html')
 
 app.run(host='0.0.0.0', port=81, debug=True)

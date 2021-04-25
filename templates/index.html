@@ -7,24 +7,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/main.css">
-
-    <script>
-      function updatemenu() {
-        if (document.getElementById('responsive-menu').checked == true) {
-          document.getElementById('menu').style.borderBottomRightRadius = '0';
-          document.getElementById('menu').style.borderBottomLeftRadius = '0';
-        } else {
-          document.getElementById('menu').style.borderRadius = '0px';
-        }
-      }
-    </script>
   </head>
   <body>
     <nav id='menu'>
       <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
       <ul>
         <li><a href='/'>Kalender</a></li>
-        <li><a href='/Profile'>Profil</a></li>
+        <li><a href='/profile'>Profil</a></li>
         <li><a href='/logout'>Log ud</a></li>
       </ul>
     </nav>
@@ -57,10 +46,9 @@
       <label id="save_button" for="save_button">Gem</label>
       <input id="submit_button" type="submit" value="Reset data">
     </form>
-    <a href="logout">Log ud</a>
     </div>
     <div class="calender">
-    <!-- Målmand -->
+    <!-- Mandag -->
     <div class="column">
     <table>
       <caption><h3>Mandag</h3></caption>
@@ -73,7 +61,7 @@
       {% endfor %}
     </table>
     </div>
-    <!-- Forsvar -->
+    <!-- Tirsdag -->
     <div class="column">
     <table>
       <caption><h3>Tirsdag</h3></caption>
@@ -87,7 +75,7 @@
     
     </table>
     </div>
-    <!-- Midtbane -->
+    <!-- Onsdag -->
     <div class="column">
     <table>
       <caption><h3>Onsdag</h3></caption>
@@ -100,7 +88,7 @@
       {% endfor %}
     </table>
     </div>
-    <!-- Angriber -->
+    <!-- Torsdag -->
     <div class="column">
     <table>
       <caption><h3>Torsdag</h3></caption>
@@ -113,6 +101,7 @@
       {% endfor %}
     </table>
     </div>
+    <!-- Fredag -->
     <div class="column">
     <table>
       <caption><h3>Fredag</h3></caption>
@@ -125,6 +114,7 @@
       {% endfor %}
     </table>
     </div>
+    <!-- Lørdag -->
     <div class="column">
     <table>
       <caption><h3>Lørdag</h3></caption>
@@ -137,6 +127,7 @@
       {% endfor %}
     </table>
     </div>
+    <!-- Søndag -->
     <div class="column">
     <table>
       <caption><h3>Søndag</h3></caption>
