@@ -2,9 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>You are in!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profil</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/profile.css">
 </head>
 <body>
-<p>Welcome {{ username }}</p>
+<nav id='menu'>
+    <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+    <ul>
+        <li><a href='/'>Kalender</a></li>
+        <li><a href='/profile'>Profil</a></li>
+        <li><a href='/logout'>Log ud</a></li>
+    </ul>
+</nav>
+
+<p>Welcome {{ session['username'] }}</p>
+<form method="post" action="profile">
+    <label id="interests" for"interests">Top 3 interesser</label><br>
+    <label id="primary_interest" for"primary_interest">Primær interesse</label><br>
+      <select id="option1" name="primary_interest" size="1">
+        <option name="primary_interest" value="Fodbold">Fodbold</option>
+        <option name="primary_interest" value="Tennis">Tennis</option>
+        <option name="primary_interest" value="Golf">Golf</option>
+        <option name="primary_interest" value="Svømning">Svømning</option>
+        <option name="primary_interest" value="Danse">Danse</option>
+        <option name="primary_interest" value="Synge">Synge</option>
+        <option name="primary_interest" value="Gaming">Gaming</option>
+      </select>
+    <label id="secondary_interest" for"secondary_interest">Sekundær interesse</label><br>
+      <select id="option2" name="secondary_interest" size="1">
+        <option name="secondary_interest" value="Fodbold">Fodbold</option>
+        <option name="secondary_interest" value="Tennis">Tennis</option>
+        <option name="secondary_interest" value="Golf">Golf</option>
+        <option name="secondary_interest" value="Svømning">Svømning</option>
+        <option name="secondary_interest" value="Danse">Danse</option>
+        <option name="secondary_interest" value="Synge">Synge</option>
+        <option name="secondary_interest" value="Gaming">Gaming</option>
+      </select>
+    <label id="tertiary_interest" for"tertiary_interest">Tertiær interesse</label><br>
+      <select id="option3" name="tertiary_interest" size="1">
+        <option name="tertiary_interest" value="Fodbold">Fodbold</option>
+        <option name="tertiary_interest" value="Tennis">Tennis</option>
+        <option name="tertiary_interest" value="Golf">Golf</option>
+        <option name="tertiary_interest" value="Svømning">Svømning</option>
+        <option name="tertiary_interest" value="Danse">Danse</option>
+        <option name="tertiary_interest" value="Synge">Synge</option>
+        <option name="tertiary_interest" value="Gaming">Gaming</option>
+      </select>
+    <input id="submit_button" type="submit" value="Gem">
+</form>
 </body>
 </html>
