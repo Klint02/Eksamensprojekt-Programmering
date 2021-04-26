@@ -24,10 +24,6 @@ def index():
                 activitys.append(Activity(day,str(activity), str(time) ,"DATO",str(description)))
                 print(activitys)
 
-                #cursor = db.cursor()
-        
-                #cursor.execute("INSERT INTO person (Person, Calender) VALUES ('test', ?)", ())
-
         except sqlite3.Error:
             message = "There was a problem executing the SQL statement"
             return render_template("index.html", error=message, activitys=activitys)
@@ -68,7 +64,7 @@ def log_the_user_in(username):
         with open(f"datafiles/{session['username']}", 'rb') as file2:
             global activitys
             saved_data = pickle.load(file2)
-            activitys = saved_data
+            activitys.append(saved_data)
             print(activitys)
             return render_template('index.html', activitys=activitys, username=username)
     # Hvis personen ikke har fået oprettet en fil, opret en der er tom
@@ -142,7 +138,9 @@ def register():
 
 @app.route('/logout')
 def logout():
+    global activitys
     session.pop('username', default=None)
+    activitys.clear()
     return render_template('login.html')
 
 app.run(host='0.0.0.0', port=81, debug=True)
