@@ -15,6 +15,7 @@ def index():
             if session.get('username') == None:
                 return render_template("login.html")
             elif request.method == 'POST':
+                global activitys
                 activity = request.form.get('activity')
                 time = request.form.get('time')
                 day = request.form.get('day')
@@ -55,7 +56,7 @@ def profile():
                 tertiary_interest = request.form.get('tertiary_interest')
 
                 cursor = db.cursor()
-                cursor.execute("UPDATE Interests SET primary = ?, secondary = ?, tertiary = ? WHERE username = ?", (primary_interest, secondary_interest, tertiary_interest, session['username']))
+                cursor.execute("UPDATE Interests SET [primary] = ?, secondary = ?, tertiary = ? WHERE username = ?", (primary_interest, secondary_interest, tertiary_interest, session['username']))
                 print(primary_interest,secondary_interest,tertiary_interest)
         except sqlite3.Error:
             message = "There was a problem executing the SQL statement"
