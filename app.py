@@ -64,7 +64,8 @@ def log_the_user_in(username):
         with open(f"datafiles/{session['username']}", 'rb') as file2:
             global activitys
             saved_data = pickle.load(file2)
-            activitys.append(saved_data)
+            #activitys.append(saved_data)
+            activitys = saved_data
             print(activitys)
             return render_template('index.html', activitys=activitys, username=username)
     # Hvis personen ikke har fået oprettet en fil, opret en der er tom
@@ -140,7 +141,7 @@ def register():
 def logout():
     global activitys
     session.pop('username', default=None)
-    activitys.clear()
+    #activitys.clear()
     return render_template('login.html')
 
 app.run(host='0.0.0.0', port=81, debug=True)
