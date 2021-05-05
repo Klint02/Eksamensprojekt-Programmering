@@ -7,14 +7,20 @@ app = Flask(__name__)
 
 activitys = []
 
+predefined_activitys = [Activity("Undefined", "Fodboldkamp (U21) - Herning vs Silkeborg", "2.5", "DATO", "En fodboldkamp mellem Herning og Silkeborg. Spilles på Herningvej 2")]
+
 app.secret_key = 'BAD_SECRET_KEY'
 @app.route('/', methods=['POST', 'GET'])
 def index():
     with sqlite3.connect("users.db") as db:
         try:
+            print(session['username'])
+            cursor = db.cursor()
+            cursor.execute("select * from Interests where username = '" + session['username'] + "'")
+            print(cursor.fetchall())
             if session.get('username') == None:
                 return render_template("login.html")
-            elif request.method == 'POST':
+            if request.method == 'POST':
                 global activitys
                 activity = request.form.get('activity')
                 time = request.form.get('time')
@@ -23,6 +29,8 @@ def index():
 
                 activitys.append(Activity(day,str(activity), str(time) ,"DATO",str(description)))
                 print(activitys)
+
+            
 
         except sqlite3.Error:
             message = "There was a problem executing the SQL statement"
@@ -51,6 +59,8 @@ def profile():
                 secondary_interest = request.form.get('secondary_interest')
                 tertiary_interest = request.form.get('tertiary_interest')
 
+
+
                 cursor = db.cursor()
                 cursor.execute("UPDATE Interests SET [primary] = ?, secondary = ?, tertiary = ? WHERE username = ?", (primary_interest, secondary_interest, tertiary_interest, session['username']))
                 print(primary_interest,secondary_interest,tertiary_interest)
@@ -67,7 +77,8 @@ def log_the_user_in(username):
             #activitys.append(saved_data)
             activitys = saved_data
             print(activitys)
-            return render_template('index.html', activitys=activitys, username=username)
+            #return render_template('index.html', activitys=activitys, username=username)
+            return redirect("/")
     # Hvis personen ikke har fået oprettet en fil, opret en der er tom
     except FileNotFoundError:
         with open(f"datafiles/{session['username']}", 'wb') as file:
@@ -123,8 +134,6 @@ def register():
                 valid_login = cursor.fetchall()
                 
                 if valid_login == []:
-                    #cursor = db.cursor()
-                    print("test")
                     cur = db.cursor()
                     cur.execute("INSERT INTO User(username, password) values (?,?)", (username,password))
                     print(cur.fetchall())
