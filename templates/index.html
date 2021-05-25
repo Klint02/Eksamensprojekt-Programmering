@@ -42,10 +42,6 @@
       <br>
       <input id="submit_button" type="submit" value="Opret">
     </form>
-    <form method="post" action="/save">
-      <label id="save_button" for="save_button">Gem din kalender</label> <br>
-      <input id="save_button" type="submit" value="Gem">
-    </form>
     </div>
     <div class="calender">
     <!-- Mandag -->
@@ -53,9 +49,9 @@
     <table>
       <caption><h3>Mandag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Monday' %}
+        {% if activitys[activity][3] == 'Monday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -66,9 +62,9 @@
     <table>
       <caption><h3>Tirsdag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Tuesday' %}
+        {% if activitys[activity][3] == 'Tuesday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -80,9 +76,9 @@
     <table>
       <caption><h3>Onsdag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Wednesday' %}
+        {% if activitys[activity][3] == 'Wednesday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -93,9 +89,9 @@
     <table>
       <caption><h3>Torsdag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Thursday' %}
+        {% if activitys[activity][3] == 'Thursday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -106,9 +102,9 @@
     <table>
       <caption><h3>Fredag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Friday' %}
+        {% if activitys[activity][3] == 'Friday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -119,9 +115,9 @@
     <table>
       <caption><h3>Lørdag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Saturday' %}
+        {% if activitys[activity][3] == 'Saturday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -132,9 +128,9 @@
     <table>
       <caption><h3>Søndag</h3></caption>
       {% for activity in activitys %}
-        {% if activity.day == 'Sunday' %}
+        {% if activitys[activity][3] == 'Sunday' %}
           <tr>
-            <td>{{ activity.activity }} | Tid afsat: {{ activity.time }}t <br> Beskrivelse: {{ activity.description }}</td>
+            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
