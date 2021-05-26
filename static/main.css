@@ -6,6 +6,7 @@
   padding-bottom: 5px;
   padding-top: 5px;
   margin-top: 15px;
+  margin-bottom: 20px
 }
 
 * {
@@ -23,11 +24,17 @@
   flex: 50%;
   padding: 5px;
 }
-
+.time {
+	background-color: #F4A261;
+}
 tbody tr td {
   text-align: center;
   background-color: #E9C46A;
   color: #FFFFFF;
+  max-width: 175px;
+  min-width: 175px;
+  word-wrap:break-word;
+  table-layout: fixed;
   padding-left: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
@@ -42,6 +49,7 @@ div table caption {
 #text-and-input {
   float: left;
   margin-left: 10px;
+  height: 100%;
 }
 
 html body {
@@ -131,3 +139,130 @@ html body {
 }
 
 /* ================================================================= */
+
+
+.v1_11 {
+	width: 400px;
+	height: 150px;
+	margin-bottom: 15px;
+	background: url("../images/v1_11.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	opacity: 1;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+  }
+  .v1_2 {
+	width: 400px;
+	height: 150px;
+	background: rgba(244,162,97,1);
+	opacity: 1;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+  }
+  .v1_7 {
+	width: 27px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 59px;
+	left: 12px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .v1_8 {
+	width: 45px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 60px;
+	left: 43px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .v1_3 {
+	width: 376px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 10px;
+	left: 12px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .v1_5 {
+	width: 300px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 37px;
+	left: 12px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .day_chose {
+	width: 300px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 37px;
+	left: 70px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .v1_6 {
+	width: 19px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 37px;
+	left: 181px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .v1_9 {
+	width: 376px;
+	color: rgba(0,0,0,1);
+	position: absolute;
+	top: 92px;
+	left: 12px;
+	font-family: Roboto;
+	font-weight: Regular;
+	font-size: 13px;
+	opacity: 1;
+	text-align: left;
+  }
+  .v1_10 {
+	width: 400px;
+	height: 3px;
+	background: rgba(232,196,106,1);
+	opacity: 1;
+	position: absolute;
+	top: 82px;
+	left: 0px;
+	overflow: hidden;
+  }
+  
+  html body form {
+	margin: auto;
+	width: 50%;
+	text-align: center;
+	margin-top: 25px;
+  }

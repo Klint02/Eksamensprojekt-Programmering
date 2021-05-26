@@ -7,6 +7,42 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+      function get(clicked_id) {
+                
+                var answer = window.confirm('Vil du slette denne aktivitet? (Opdater siden, hvis du trykker ja)')
+                if (answer) {
+                    var val = clicked_id
+                    console.log(val);
+                    $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/get",
+                    traditional: "true",
+                    data: JSON.stringify({val}),
+                    dataType: "json"
+                    });
+
+                } 
+            }
+      function pactivity_get(clicked_id) {
+                var answer = window.confirm('Vil du tilføje denne aktivitet? (Opdater siden, hvis du trykker ja)')
+                if (answer) {
+                    var val = clicked_id
+                    console.log(val);
+                    $.ajax({
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    url: "/pactivity_get",
+                    traditional: "true",
+                    data: JSON.stringify({val}),
+                    dataType: "json"
+                    });
+
+                } 
+            }
+    </script>
   </head>
   <body>
     <nav id='menu'>
@@ -18,7 +54,7 @@
       </ul>
     </nav>
     <div id="text-and-input">
-    <p>Welcome {{ session['username'] }}</p><br>
+    <p>Velkommen {{ session['username'] }} til din kalender</p><br>
     <form method="post" action="/">
       <label id="activity" for"activity">Aktivitet:</label><br>
       <input type="text" id="activity" name="activity" placeholder="">
@@ -38,20 +74,57 @@
       </select>
       <br>
       <label id="description" for"description">Beskrivelse:</label><br>
-      <textarea id="description" name="description" rows="4" cols="50"></textarea>
+      <input id="description" name="description" rows="4" cols="50"></input>
       <br>
       <input id="submit_button" type="submit" value="Opret">
     </form>
+    <div class="pActivity">
+      {% if user_interests[0][1] == "Ikke oplyst" or user_interests[0][2] == "Ikke oplyst" or user_interests[0][3] == "Ikke oplyst" %}
+        <p>Indsæt dine interesser under Profil for at se forslag.</p>
+      {% endif %}
+      {% for pactivity in predefined_activitys %}
+        {% if predefined_activitys[pactivity][5] == user_interests[0][1] or predefined_activitys[pactivity][5] == user_interests[0][2] or predefined_activitys[pactivity][5] == user_interests[0][3] %}
+          {% if predefined_activitys[pactivity][3] == "Undefined" %}
+          <div class="v1_11" id="{{ predefined_activitys[pactivity][0] }}" style="cursor: pointer;" onclick="pactivity_get(this.id)">
+            <div class="v1_2"></div>
+            <span class="v1_7">Dag:</span>
+            <span class="v1_8">{{ predefined_activitys[pactivity][3] }}</span>
+            <span class="v1_3">{{ predefined_activitys[pactivity][1] }}</span>
+            <span class="v1_5">Antal timer aktiviteten tager:</span>
+            <span class="v1_6">{{ predefined_activitys[pactivity][2] }}</span>
+            <span class="v1_9">{{ predefined_activitys[pactivity][4] }}</span>
+            <div class="v1_10"></div>
+          </div>
+          {% endif %}
+          {% if predefined_activitys[pactivity][3] != "Undefined" %}
+          <div class="v1_11" id="{{ predefined_activitys[pactivity][0] }}" style="cursor: pointer;" onclick="pactivity_get(this.id)">
+            <div class="v1_2"></div>
+            <span class="v1_7">Dag:</span>
+            <span class="v1_8">{{ predefined_activitys[pactivity][3] }}</span>
+            <span class="v1_3">{{ predefined_activitys[pactivity][1] }}</span>
+            <span class="v1_5">Antal timer aktiviteten tager:</span>
+            <span class="v1_6">{{ predefined_activitys[pactivity][2] }}</span>
+            <span class="v1_9">{{ predefined_activitys[pactivity][4] }}</span>
+            <div class="v1_10"></div>
+          </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </div>
+    </div>
+    
     <div class="calender">
     <!-- Mandag -->
     <div class="column">
     <table>
       <caption><h3>Mandag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][4]|int - time_minus[0][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Monday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -61,10 +134,13 @@
     <div class="column">
     <table>
       <caption><h3>Tirsdag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][5]|int - time_minus[1][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Tuesday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -75,10 +151,13 @@
     <div class="column">
     <table>
       <caption><h3>Onsdag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][6]|int - time_minus[2][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Wednesday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -88,10 +167,13 @@
     <div class="column">
     <table>
       <caption><h3>Torsdag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][7]|int - time_minus[3][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Thursday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -101,10 +183,13 @@
     <div class="column">
     <table>
       <caption><h3>Fredag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][8]|int - time_minus[4][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Friday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -114,10 +199,13 @@
     <div class="column">
     <table>
       <caption><h3>Lørdag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][9]|int - time_minus[5][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Saturday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
@@ -127,10 +215,13 @@
     <div class="column">
     <table>
       <caption><h3>Søndag</h3></caption>
+      <tr>
+        <td class="time">{{ user_interests[0][10]|int - time_minus[6][0][0]|int }} timer</td>
+      </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Sunday' %}
           <tr>
-            <td>{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
+            <td id="{{ activitys[activity][0] }}" style="cursor: pointer;" onclick="get(this.id)">{{ activitys[activity][1] }} | Tid afsat: {{ activitys[activity][2] }}t <br> Beskrivelse: {{ activitys[activity][4] }}</td>
           </tr>
         {% endif %}
       {% endfor %}
