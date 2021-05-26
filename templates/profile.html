@@ -19,7 +19,6 @@
     </ul>
 </nav>
 
-<p>Welcome {{ session['username'] }}</p>
 <form method="post" action="profile">
     <label id="interests" for"interests">Top 3 interesser</label><br>
     <label id="primary_interest" for"primary_interest">Primær interesse</label><br>
@@ -32,6 +31,7 @@
         <option name="primary_interest" value="Synge">Synge</option>
         <option name="primary_interest" value="Gaming">Gaming</option>
       </select>
+    <br>
     <label id="secondary_interest" for"secondary_interest">Sekundær interesse</label><br>
       <select id="option2" name="secondary_interest" size="1">
         <option name="secondary_interest" value="Fodbold">Fodbold</option>
@@ -42,6 +42,7 @@
         <option name="secondary_interest" value="Synge">Synge</option>
         <option name="secondary_interest" value="Gaming">Gaming</option>
       </select>
+    <br>
     <label id="tertiary_interest" for"tertiary_interest">Tertiær interesse</label><br>
       <select id="option3" name="tertiary_interest" size="1">
         <option name="tertiary_interest" value="Fodbold">Fodbold</option>
@@ -52,6 +53,28 @@
         <option name="tertiary_interest" value="Synge">Synge</option>
         <option name="tertiary_interest" value="Gaming">Gaming</option>
       </select>
+    <br>
+    <label id="freetime_monday_text" for"freetime_monday">Fritid mandag:</label><br>
+    <input type="text" id="freetime_monday" name="freetime_monday" placeholder="">
+    <br>
+    <label id="freetime_tuesday" for"freetime_tuesday">Fritid tirsdag:</label><br>
+    <input type="text" id="freetime_tuesday" name="freetime_tuesday" placeholder="">
+    <br>
+    <label id="freetime_wednesday" for"freetime_wednesday">Fritid onsdag:</label><br>
+    <input type="text" id="freetime_wednesday" name="freetime_wednesday" placeholder="">
+    <br>
+    <label id="freetime_thursday" for"freetime_thursday">Fritid torsdag:</label><br>
+    <input type="text" id="freetime_thursday" name="freetime_thursday" placeholder="">
+    <br>
+    <label id="freetime_friday" for"freetime_friday">Fritid fredag:</label><br>
+    <input type="text" id="freetime_friday" name="freetime_friday" placeholder="">
+    <br>
+    <label id="freetime_saturday" for"freetime_saturday">Fritid lørdag:</label><br>
+    <input type="text" id="freetime_saturday" name="freetime_saturday" placeholder="">
+    <br>
+    <label id="freetime_sunday" for"freetime_sunday">Fritid søndag:</label><br>
+    <input type="text" id="freetime_sunday" name="freetime_sunday" placeholder="">
+    <br>
     <input id="submit_button" type="submit" value="Gem">
 </form>
 </body>
