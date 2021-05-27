@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../static/form-style.css">
-
+        <!-- Functioner der tjekker om man har indsat noget i felterne  -->
         <script>
         function validateForm() {
         var x = document.forms["login-form"]["username"].value;
@@ -21,16 +21,17 @@
     </head>
     <body>
         <div>
-                <form name="login-form"  action="/register" onsubmit="return validateForm()" target="_self" method="POST"  >
-                    <h2>Register:</h2>
-                    {% if error %}
-                      <p>{{ error }}</p>
-                    {% endif %}
-                    <input type ="text" name ="username" placeholder="Username"><br>
-                    <input type="password" name="password" placeholder="Password"><br>
-                    <input type="submit" value="Submit"><br>
-                </form>
-                <p>Hvis du allerede har en konto klik her: <a href="login">Log ind</a></p>
+            <!-- registrering af bruger  -->
+            <form name="login-form"  action="/register" onsubmit="return validateForm()" target="_self" method="POST"  >
+                <h2>Register:</h2>
+                {% if error %}
+                <p>{{ error }}</p>
+                {% endif %}
+                <input type ="text" name ="username" placeholder="Username"><br>
+                <input type="password" name="password" placeholder="Password"><br>
+                <input type="submit" value="Submit"><br>
+            </form>
+            <p>Hvis du allerede har en konto klik her: <a href="login">Log ind</a></p>
         </div>
     </body>
 </html>
