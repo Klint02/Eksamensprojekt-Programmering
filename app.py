@@ -218,7 +218,7 @@ def register():
                 if valid_login == []:
                     cur = db.cursor()
                     cur.execute("INSERT INTO User(username, password) values (?,?)", (username,password))
-                    cur.execute("INSERT INTO User_preferences(username, [primary],secondary,tertiary) VALUES (?,?,?,?)", (username, "Ikke oplyst", "Ikke oplyst", "Ikke oplyst"))
+                    cur.execute("INSERT INTO User_preferences VALUES (?,?,?,?,?,?,?,?,?,?,?)", (username, "Ikke oplyst", "Ikke oplyst", "Ikke oplyst","Ikke oplyst", "Ikke oplyst", "Ikke oplyst","Ikke oplyst", "Ikke oplyst", "Ikke oplyst","Ikke oplyst"))
                     print(cur.fetchall())
                     
                     render_template('login.html', error=error)
