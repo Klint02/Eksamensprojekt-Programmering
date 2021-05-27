@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, url_for, escape, g
 import sqlite3
-from activity import Activity
 
 app = Flask(__name__)
 ##########################################################
