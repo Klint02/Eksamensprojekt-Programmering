@@ -129,7 +129,7 @@
     <table>
       <caption><h3>Mandag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][4]|int - time_minus[0][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][4]|float - time_minus[0][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Monday' %}
@@ -145,7 +145,7 @@
     <table>
       <caption><h3>Tirsdag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][5]|int - time_minus[1][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][5]|float - time_minus[1][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Tuesday' %}
@@ -162,7 +162,7 @@
     <table>
       <caption><h3>Onsdag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][6]|int - time_minus[2][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][6]|float - time_minus[2][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Wednesday' %}
@@ -178,7 +178,7 @@
     <table>
       <caption><h3>Torsdag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][7]|int - time_minus[3][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][7]|float - time_minus[3][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Thursday' %}
@@ -194,7 +194,7 @@
     <table>
       <caption><h3>Fredag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][8]|int - time_minus[4][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][8]|float - time_minus[4][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Friday' %}
@@ -210,7 +210,7 @@
     <table>
       <caption><h3>Lørdag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][9]|int - time_minus[5][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][9]|float - time_minus[5][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Saturday' %}
@@ -226,7 +226,7 @@
     <table>
       <caption><h3>Søndag</h3></caption>
       <tr>
-        <td class="time">{{ user_interests[0][10]|int - time_minus[6][0][0]|int }} timer</td>
+        <td class="time">{{ user_interests[0][10]|float - time_minus[6][0][0]|float }} timer</td>
       </tr>
       {% for activity in activitys %}
         {% if activitys[activity][3] == 'Sunday' %}
