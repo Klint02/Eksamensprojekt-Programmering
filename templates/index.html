@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Funktioner til at sende data til python (Bruges som knap) -->
     <script>
       function get(clicked_id) {
                 
@@ -45,6 +46,7 @@
     </script>
   </head>
   <body>
+    <!-- Nav-bar i toppen -->
     <nav id='menu'>
       <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
       <ul>
@@ -53,6 +55,7 @@
         <li><a href='/logout'>Log ud</a></li>
       </ul>
     </nav>
+    <!-- Oprettelse af en aktivitet, hvor man indsætter aktivitetens navn, antal timer, dag og beskrivelse -->
     <div id="text-and-input">
     <p>Velkommen {{ session['username'] }} til din kalender</p><br>
     <form method="post" action="/">
@@ -78,10 +81,15 @@
       <br>
       <input id="submit_button" type="submit" value="Opret">
     </form>
+
+    <!-- Predefineret aktiviteter -->
     <div class="pActivity">
+      <!-- Hvis man ikke har indsat nogle interesser, skrives der at man skal gå ind under ens profil at gøre det -->
       {% if user_interests[0][1] == "Ikke oplyst" or user_interests[0][2] == "Ikke oplyst" or user_interests[0][3] == "Ikke oplyst" %}
         <p>Indsæt dine interesser under Profil for at se forslag.</p>
       {% endif %}
+
+      <!-- Indsætter de predefineret aktiviteter, baseret på om de har en bestemt dag indsat eller ej -->
       {% for pactivity in predefined_activitys %}
         {% if predefined_activitys[pactivity][5] == user_interests[0][1] or predefined_activitys[pactivity][5] == user_interests[0][2] or predefined_activitys[pactivity][5] == user_interests[0][3] %}
           {% if predefined_activitys[pactivity][3] == "Undefined" %}
@@ -113,6 +121,8 @@
     </div>
     </div>
     
+    <!-- Kalenderen -->
+    <!-- Der oprettes en tabel til hver dag, hvor den indsætter tingene fra dictionarien activitys -->
     <div class="calender">
     <!-- Mandag -->
     <div class="column">
