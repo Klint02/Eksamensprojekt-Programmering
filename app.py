@@ -17,7 +17,7 @@ def index():
     # Opretter forbindelse til databasen
     with sqlite3.connect("users.db") as db:
         try:
-            # Sletter alt data i time_minus så den bliver opdateret
+            # Sletter alt data i time_minus så den kan blive opdateret
             time_minus.clear()
             # Hvis at man ikke er logget ind, send brugeren tilbage til loginsiden
             if session.get('username') == None:
